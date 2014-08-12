@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE ivy-module [
+	<!ENTITY vaadin.version "7.2.6">
+]>
+<ivy-module version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info organisation="com.example" module="v7proj" />
+	<configurations>
+		<!-- The default configuration, which should be deployed to the server -->
+		<conf name="default" />
+		<!-- A configuration only needed when compiling the widget set. Should 
+			not be deployed to the server -->
+		<conf name="widgetset-compile" />
+		<!-- A configuration used in compilation of server side classes only.
+			Should be deployed to the server -->
+		<conf name="nodeploy" />
+	</configurations>
+	<dependencies defaultconf="default" defaultconfmapping="default->default">
+		<!-- The core server part of Vaadin -->
+		<dependency org="com.vaadin" name="vaadin-server" rev="&vaadin.version;" />
+
+		<!-- Vaadin themes -->
+		<dependency org="com.vaadin" name="vaadin-themes" rev="&vaadin.version;" />
+
+		<!-- Push support -->
+		<!--<dependency org="com.vaadin" name="vaadin-push" rev="&vaadin.version;" />-->
+
+		<!-- Servlet 3.0 API -->
+		<dependency org="javax.servlet" name="javax.servlet-api" rev="3.0.1" conf="nodeploy->default" />
+
+		<!-- Precompiled DefaultWidgetSet -->
+		<dependency org="com.vaadin" name="vaadin-client-compiled"
+			rev="&vaadin.version;" />
+
+		<!-- Vaadin client side, needed for widget set compilation -->
+		<dependency org="com.vaadin" name="vaadin-client" rev="&vaadin.version;"
+			 conf="widgetset-compile->default" />
+
+		<!-- Compiler for custom widget sets. Should not be deployed -->
+		<dependency org="com.vaadin" name="vaadin-client-compiler"
+			rev="&vaadin.version;" conf="widgetset-compile->default" />
+			
+		<!-- Shiro support -->
+		<dependency org="org.apache.shiro" name="shiro-core" rev="1.2.3" />
+		<dependency org="org.apache.shiro" name="shiro-web" rev="1.2.3" >
+		  <exclude org="org.slf4j" name="slf4j-api" />
+		</dependency>
+		
+		<!-- Postgresql jdbc driver -->
+		<dependency org="org.postgresql" name="postgresql" rev="9.2-1003-jdbc4" />
+		
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.6.1" />
+   		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.6.1" />
+   		
+   			<!-- Vaadin JPA -->
+		<dependency org="com.vaadin.addon" name="jpacontainer" rev="3.1.1" />
+		
+		<!-- EclipseLink -->
+		<dependency org="org.eclipse.persistence" name="eclipselink" rev="2.5.0" />
+		<dependency org="org.eclipse.persistence" name="javax.persistence" rev="2.1.0" />
+		
+		
+		<!-- FilteringTable addon -->
+		<dependency org="org.vaadin.addons" name="filteringtable" rev="0.9.10.v7" />
+		
+		<!-- ConfirmDialog addon -->
+		<dependency org="org.vaadin.addon" name="confirmdialog" rev="2.0.4" />
+		
+		
+	</dependencies>
+</ivy-module>
